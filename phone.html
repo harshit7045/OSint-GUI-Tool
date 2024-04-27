@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles1.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+
+</head>
+
+<body>
+    <div id="top-sec">
+        <div id="nav-bar">
+            <div id="a" class="nav-tool"><img src="a/image-removebg-preview.png" alt=""></div>
+            <div class="nav-tool"><a href="html.html">Home</a></div>
+            <div class="nav-tool"><a href="phone.html">Phone.no OSint</a></div>
+            <div class="nav-tool"><a href="emailosint.html">Email OSint</a></div>
+            <div class="nav-tool"><a href="image_reverse_search.html">Image reverse search</a></div>
+            <div class="nav-tool"><a href="social_meadia.html">Social media OSint</a></div>
+
+        </div>
+        <div id="intro">
+            <div id="intro-text" class="ib" style="text-align: justify;">
+                <h2>Phone.No OSint</h2>
+                <h6>About Phone.No OSint</h6>
+                <div>Phone OSINT (Open Source Intelligence) involves gathering information from publicly available
+                    sources about a phone user. It includes analyzing social media, online profiles, and public records
+                    for investigative purposes.
+                </div>
+                <div id="download"> <a href="https://www.w3schools.com">Download OSint<br> Whitepaper</a> </div>
+            </div>
+            <div id="intro-image" class="ib"><img src="a/phone.png" alt=""></div>
+        </div>
+    </div>
+    <div id="mid-sec">
+        <div id="ps">Get phone number details</div>
+        <div id="why">
+            <input type="text" placeholder="Enter Phone Number" id="phoneNo" />
+            <button id="bu" onclick="getUserData()">Submit</button>
+        </div>
+        <div id="features">
+
+
+            <div id="phone">
+
+                <div class="info">
+                    <div class="tag">Valid</div>
+                    <div class="tag-info" id="valid-info">NA</div>
+                </div>
+                <div class="info">
+                    <div class="tag">Country</div>
+                    <div class="tag-info" id="country-info">NA</div>
+                </div>
+                <div class="info">
+                    <div class="tag">Location</div>
+                    <div class="tag-info" id="location-info">NA</div>
+                </div>
+                <div class="info">
+                    <div class="tag">Carrier</div>
+                    <div class="tag-info" id="carrier-info">NA</div>
+                </div>
+                <div class="info">
+                    <div class="tag">Line-type</div>
+                    <div class="tag-info" id="line-type-info">NA</div>
+                </div>
+                <div class="info">
+                    <div class="tag">Is leaked</div>
+                    <div class="tag-info" id="leaked-info">false</div>
+                </div>
+                <div class="info">
+                    <div class="tag">Name if leaked</div>
+                    <div class="tag-info" id="name">NA</div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+    <div id="footer">
+        <div id="footer-elements">
+            <div id="ab" class="footer-block"><img src="a/image-removebg-preview.png" alt="">
+                <div id="foot-note">OSINT software aids in gathering and analyzing open-source information for security
+                    intelligence research and decision-making purposes.</div>
+            </div>
+            <div class="footer-block">
+                <h4>Services</h4>
+                <ul>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">Mobile.No OSint</li>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">Email OSint</li>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">Social Media OSint
+                    </li>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">Image Reverse Search
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-block">
+                <h4>Get in Touch</h4>
+                <ul>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">Phone.No-9651908428
+                    </li>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png"
+                            alt="">Email-harshit7045@outlook.com</li>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">Ig-handel-harshit7099
+                    </li>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">IIIT Una</li>
+                </ul>
+            </div>
+
+        </div>
+        <hr>
+        <div id="bottom-line">
+            IIIT Una Practicum
+        </div>
+
+        <script>
+            async function getUserData() {
+                try {
+                    const phone = document.getElementById('phoneNo').value;
+
+                    let response = await fetch(`http://apilayer.net/api/validate?access_key=2619ebfed4f20ef86373d4c1092ddb4e&number=${phone}&country_code=in`);
+                    let data = await response.json();
+                    const user = await fetch('http://localhost:3000/user', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ phone: phone }),
+                    });
+                    let userData = await user.json();
+                    console.log(userData.name);
+
+
+                    document.getElementById('valid-info').innerText = data.valid;
+                    document.getElementById('country-info').innerText = data.country_name;
+                    document.getElementById('location-info').innerText = data.location;
+                    document.getElementById('carrier-info').innerText = data.carrier;
+                    document.getElementById('line-type-info').innerText = data.line_type;
+                    if (userData[0] != "Saab") {
+                        document.getElementById('name').innerText = userData.name;
+                        document.getElementById('leaked-info').innerText = "true";
+                    }
+
+
+
+
+                } catch (error) {
+                    console.error("error");
+                }
+            }
+        </script>
+</body>
+
+</html>

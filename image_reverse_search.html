@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles1.css" />
+    <link rel="stylesheet" type="text/css" href="image_reverse_search.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+
+</head>
+
+<body>
+    <div id="top-sec">
+        <div id="nav-bar">
+            <div id="a" class="nav-tool"><img src="a/image-removebg-preview.png" alt=""></div>
+            <div class="nav-tool"><a href="html.html">Home</a></div>
+            <div class="nav-tool"><a href="phone.html">Phone.no OSint</a></div>
+            <div class="nav-tool"><a href="emailosint.html">Email OSint</a></div>
+            <div class="nav-tool"><a href="image_reverse_search.html">Image reverse search</a></div>
+            <div class="nav-tool"><a href="social_meadia.html">Social media OSint</a></div>
+
+        </div>
+        <div id="intro">
+            <div id="intro-text" class="ib" style="text-align: justify;">
+                <h2>Image reverse search</h2>
+                <h6>About Image reverse search</h6>
+                <div>Image reverse search allows users to discover the origin or related content of an image by
+                    uploading or providing its URL. Utilizing advanced algorithms, search engines analyze visual
+                    features to identify matching images online. This tool proves invaluable for verifying authenticity,
+                    finding higher resolutions, or uncovering additional information about a particular image.
+                </div>
+                <div id="download"> <a href="https://www.w3schools.com">Download OSint<br> Whitepaper</a> </div>
+            </div>
+            <div id="intro-image" class="ib"><img src="a/maxresdefault-removebg-preview.png" alt=""></div>
+        </div>
+    </div>
+    <div id="mid-sec">
+        <div id="ps">Get Image details</div>
+        <div id="why">
+            <input type="text" placeholder="Enter url of the image" id="phoneNo" />
+            <button id="bu" onclick="getUserData()">Submit</button>
+        </div>
+        <div id="features">
+            <div class="col">
+                <div class="link">
+                    <div class="banner"><a id="l1" target="_blank" href="www.google.com"><img id="i1" src="a/th.jpg"
+                                alt=""></a></div>
+                    <div class="des" id="d1">Des</div>
+                </div>
+                <div class="link">
+                    <div class="banner"><a id="l2" target="_blank" href="www.google.com"><img id="i2" src="a/th.jpg"
+                                alt=""></a></div>
+                    <div class="des" id="d2">Des</div>
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="link">
+                    <div class="banner"><a id="l3" target="_blank" href="www.google.com"><img id="i3" src="a/th.jpg"
+                                alt=""></a></div>
+                    <div class="des" id="d3">Des</div>
+                </div>
+                <div class="link">
+                    <div class="banner"><a id="l4" target="_blank" href="www.google.com"><img id="i4" src="a/th.jpg"
+                                alt=""></a></div>
+                    <div class="des" id="d4">Des</div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+    </div>
+
+    <div id="footer">
+        <div id="footer-elements">
+            <div id="ab" class="footer-block"><img src="a/image-removebg-preview.png" alt="">
+                <div id="foot-note">OSINT software aids in gathering and analyzing open-source information for security
+                    intelligence research and decision-making purposes.</div>
+            </div>
+            <div class="footer-block">
+                <h4>Services</h4>
+                <ul>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">Mobile.No OSint</li>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">Email OSint</li>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">Social Media OSint
+                    </li>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">Image Reverse Search
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-block">
+                <h4>Get in Touch</h4>
+                <ul>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">Phone.No-9651908428
+                    </li>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png"
+                            alt="">Email-harshit7045@outlook.com</li>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">Ig-handel-harshit7099
+                    </li>
+                    <li class="ser"><img class="bullet" src="a/images-removebg-preview.png" alt="">IIIT Una</li>
+                </ul>
+            </div>
+
+        </div>
+        <hr>
+        <div id="bottom-line">
+            IIIT Una Practicum
+        </div>
+
+        <script>
+            async function getUserData() {
+                try {
+                    const phone = document.getElementById('phoneNo').value;
+                    console.log(phone);
+
+                    // Make an AJAX request to your backend
+                    const response = await fetch('http://localhost:3000/getUserData', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ phone: phone }),
+                    });
+
+                    
+
+                    const data = await response.json();
+                    document.getElementById('d1').innerHTML = data.valid[0].title;
+                    document.getElementById('l1').href = data.valid[0].source;
+                    document.getElementById('i1').src = data.valid[0].thumbnail;
+                    //2nd div
+                    document.getElementById('d2').innerHTML = data.valid[1].title;
+                    document.getElementById('l2').href = data.valid[1].source;
+                    document.getElementById('i2').src = data.valid[1].thumbnail;
+                    //3rd div
+                    document.getElementById('d3').innerHTML = data.valid[2].title;
+                    document.getElementById('l3').href = data.valid[2].source;
+                    document.getElementById('i3').src = data.valid[2].thumbnail;
+                    //4th div
+                    document.getElementById('d4').innerHTML = data.valid[3].title;
+                    document.getElementById('l4').href = data.valid[3].source;
+                    document.getElementById('i4').src = data.valid[3].thumbnail;
+
+
+
+                    console.log(data.valid);
+                } catch (error) {
+                    console.log("error");
+                }
+            }
+        </script>
+</body>
+
+</html>

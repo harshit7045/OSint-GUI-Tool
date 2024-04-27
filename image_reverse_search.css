@@ -1,0 +1,38 @@
+#features {
+    display: flex;
+    flex-direction: row;
+}
+
+.col {
+    height: 80vh;
+    width: 30vw;
+    margin-left: 10vh;
+
+}
+
+.link {
+    border-style: solid;
+    border-color: antiquewhite;
+    height: 34%;
+    width: 100%;
+    margin-top: 10%;
+}
+
+.banner {
+    border-style: solid;
+    border-color: antiquewhite;
+    height: 70%;
+    width: 100%;
+}
+
+.des {
+
+    height: 30%;
+    width: 100%;
+
+}
+
+.banner a img {
+    height: 100%;
+    width: 100%;
+}
